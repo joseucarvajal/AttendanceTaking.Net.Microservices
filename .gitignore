@@ -1,0 +1,10 @@
+bin
+obj
+
+Academic.API/bin
+Academic.API/obj
+
+Identity.Api/bin
+Identity.Api/obj
+
+.vs

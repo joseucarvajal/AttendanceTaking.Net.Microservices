@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Identity.Api/Dockerfile
+    depends_on:
+    - db
+
+  academic.api:
+    image: ${DOCKER_REGISTRY-}academicapi
+    build:
+      context: .
+      dockerfile: Academic.API/Dockerfile
+    depends_on:
+    - db
+    - identity.api
+
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Password123"
+      ACCEPT_EULA: "Y"
