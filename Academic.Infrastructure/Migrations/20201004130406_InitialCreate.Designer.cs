@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Academic.Infrastructure.Migrations
 {
     [DbContext(typeof(AcademicDbContext))]
-    [Migration("20201004024849_InitialCreate")]
+    [Migration("20201004130406_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,22 +32,18 @@ namespace Academic.Infrastructure.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
-                    b.Property<int?>("CourseGroupId")
-                        .HasColumnName("CourseGroupId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int>("_courseGroupId")
+                    b.Property<int?>("_courseGroupId")
                         .HasColumnName("CourseGroupId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseGroupId");
+                    b.HasIndex("_courseGroupId");
 
                     b.ToTable("courses","academic");
                 });
@@ -71,7 +67,7 @@ namespace Academic.Infrastructure.Migrations
                 {
                     b.HasOne("Academic.Domain.CourseAllocationAggregate.CourseGroup", "CourseGroup")
                         .WithMany()
-                        .HasForeignKey("CourseGroupId");
+                        .HasForeignKey("_courseGroupId");
                 });
 #pragma warning restore 612, 618
         }

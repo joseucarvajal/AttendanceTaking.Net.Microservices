@@ -19,9 +19,13 @@ namespace Academic.Infrastructure.EntityConfigurations
                 .HasMaxLength(100)
                 .IsRequired();
 
-            courseConfiguration.Property<int>("_courseGroupId")
+            courseConfiguration.Property<int?>("_courseGroupId")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .HasColumnName("CourseGroupId");                
+                .HasColumnName("CourseGroupId")
+                .IsRequired(false);
+            courseConfiguration.HasOne(c => c.CourseGroup)
+                .WithMany()
+                .HasForeignKey("_courseGroupId");
         }
     }
 }

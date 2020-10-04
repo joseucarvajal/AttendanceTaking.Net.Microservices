@@ -1,7 +1,4 @@
 ﻿using App.Common.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Academic.Domain.CourseAllocationAggregate
 {

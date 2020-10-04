@@ -31,15 +31,14 @@ namespace Academic.Infrastructure.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Code = table.Column<string>(maxLength: 15, nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CourseGroupId1 = table.Column<int>(nullable: true),
-                    CourseGroupId = table.Column<int>(nullable: false)
+                    CourseGroupId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_courses_coursegroup_CourseGroupId1",
-                        column: x => x.CourseGroupId1,
+                        name: "FK_courses_coursegroup_CourseGroupId",
+                        column: x => x.CourseGroupId,
                         principalSchema: "academic",
                         principalTable: "coursegroup",
                         principalColumn: "Id",
@@ -47,10 +46,10 @@ namespace Academic.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_courses_CourseGroupId1",
+                name: "IX_courses_CourseGroupId",
                 schema: "academic",
                 table: "courses",
-                column: "CourseGroupId1");
+                column: "CourseGroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
