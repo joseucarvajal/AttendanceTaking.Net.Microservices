@@ -1,4 +1,5 @@
 using Academic.Infrastructure;
+using App.Common.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

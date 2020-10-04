@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Academic.API
+namespace App.Common.DependencyInjection
 {
-    public static class DbContextMSSQLStartupExtension
+    public static class DbContextMSSQLServiceExtension
     {
         public static IServiceCollection AddCustomMSSQLDbContext<TDbContext>(this IServiceCollection services, IConfiguration configuration) where TDbContext : DbContext
         {
