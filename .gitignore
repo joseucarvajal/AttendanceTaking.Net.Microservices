@@ -1,6 +1,13 @@
 bin
 obj
 
+App.Common/bin
+App.Common/obj
+
+Academic.Domain/bin
+Academic.Domain/obj
+Academic.Infrastructure/bin
+Academic.Infrastructure/obj
 Academic.API/bin
 Academic.API/obj
 

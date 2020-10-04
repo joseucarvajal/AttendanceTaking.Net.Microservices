@@ -17,8 +17,8 @@ services:
       dockerfile: Academic.API/Dockerfile
     depends_on:
     - db
-    - identity.api
 
+#ports: host:container
   db:
     image: "mcr.microsoft.com/mssql/server"
     ports:
