@@ -29,6 +29,18 @@ namespace Academic.Infrastructure
             context.CourseGroups.Add(CourseGroup.G3);
             context.CourseGroups.Add(CourseGroup.G4);
 
+            context.Courses.Add(new Course { 
+                Code = "C5303004", 
+                Name = "Programación 2", 
+                CourseGroup = CourseGroup.G2 });
+
+            context.Courses.Add(new Course
+            {
+                Code = "C5404003",
+                Name = "Programación 3",
+                CourseGroup = CourseGroup.G3
+            });
+
             await context.SaveChangesAsync();
         }
     }

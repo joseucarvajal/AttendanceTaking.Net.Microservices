@@ -31,6 +31,11 @@ namespace Academic.API
                 });
         */
 
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .UseStartup<Startup>()
+               .UseContentRoot(Directory.GetCurrentDirectory());
+
         private static void SeedDatabase(IWebHost host)
         {
             using (var scope = host.Services.CreateScope())
@@ -49,9 +54,5 @@ namespace Academic.API
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-           WebHost.CreateDefaultBuilder(args)
-               .UseStartup<Startup>()
-               .UseContentRoot(Directory.GetCurrentDirectory());
     }
 }
