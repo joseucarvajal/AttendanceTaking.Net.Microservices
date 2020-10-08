@@ -9,5 +9,14 @@ namespace Academic.Domain.CourseAllocationAggregate
 
         private int? _courseGroupId;
         public CourseGroup CourseGroup { get; set; }
+
+        public Course() { }
+
+        public Course(string code, string name, int? courseGroupId)
+        {
+            Code = code;
+            Name = name;
+            _courseGroupId = courseGroupId;
+        }
     }
 }

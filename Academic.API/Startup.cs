@@ -1,5 +1,6 @@
 using Academic.Infrastructure;
 using App.Common.DependencyInjection;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,8 @@ namespace Academic.API
         {
             services.AddControllers();
             services.AddCustomMSSQLDbContext<AcademicDbContext>(Configuration);
+
+            services.AddMediatR(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
