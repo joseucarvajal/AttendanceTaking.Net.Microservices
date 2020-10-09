@@ -1,5 +1,7 @@
+using Academic.API.Application.Commands;
 using Academic.Infrastructure;
 using App.Common.DependencyInjection;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,10 +23,15 @@ namespace Academic.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddCustomMSSQLDbContext<AcademicDbContext>(Configuration);
+            services.AddControllers()
+                    .AddFluentValidation(cfg =>
+                    {
+                        cfg.RegisterValidatorsFromAssemblyContaining<CreateCourseCommandHandler>();
+                        cfg.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                    });
 
-            services.AddMediatR(typeof(Startup).Assembly);
+            services.AddCustomMSSQLDbContext<AcademicDbContext>(Configuration)
+                    .AddMediatR(typeof(CreateCourseCommandHandler).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

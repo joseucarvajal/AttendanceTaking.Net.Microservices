@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Academic.API.Application.Commands;
+﻿using Academic.API.Application.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Academic.API.Controllers
 {
     [Route("api/v1/[controller]")]
-    public class CourseAllocationController : Controller
+    [ApiController]
+    public class CourseAllocationController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -21,17 +19,11 @@ namespace Academic.API.Controllers
 
         [HttpPost]
         [Route("course")]
-        public async Task<IActionResult> CreateCourse(
-            [FromBody]CreateOrderCommandHandler.Command command
+        public async Task<ActionResult<bool>> CreateCourse(
+            [FromBody]CreateCourseCommandHandler.Command command
         )
         {
-            await _mediator.Send(command);
-            return Ok();
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            return await _mediator.Send(command);
         }
     }
 }
