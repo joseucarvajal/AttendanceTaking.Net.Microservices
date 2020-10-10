@@ -13,7 +13,7 @@ namespace App.Common.DependencyInjection
                 .AddEntityFrameworkSqlServer()
                 .AddDbContextPool<TDbContext>(options =>
                 {
-                    options.UseSqlServer(configuration["ConnectionString"],
+                    options.UseSqlServer(configuration.GetConnectionString("MSSQL"),
                         sqlServerOptionsAction: sqlOptions =>
                         {
                             sqlOptions

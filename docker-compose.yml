@@ -8,15 +8,17 @@ services:
       context: .
       dockerfile: Identity.Api/Dockerfile
     depends_on:
-    - mssqlsrv
+      - mssqlsrv
 
   academic.api:
     image: ${DOCKER_REGISTRY-}academicapi
     build:
       context: .
       dockerfile: Academic.API/Dockerfile
+    environment:
+      ASPNETCORE_ConnectionStrings__MSSQL: "Server=mssqlsrv,1433;Database=AttendanceTaking.Services.AcademicDb;User Id=sa;Password=Password123"
     depends_on:
-    - mssqlsrv
+      - mssqlsrv
 
 #ports: host:container
   mssqlsrv:
