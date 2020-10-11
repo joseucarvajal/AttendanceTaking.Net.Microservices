@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using App.Common.SeedWork;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -27,6 +28,12 @@ namespace App.Common.DependencyInjection
                     10 //Connection pool size
                        //,ServiceLifetime.Scoped
                 );
+
+            services.AddSingleton(settings => {
+                CommonGlobalAppSingleSettings commonGlobalAppSingleSettings = new CommonGlobalAppSingleSettings();
+                commonGlobalAppSingleSettings.MssqlConnectionString = configuration.GetConnectionString("MSSQL");
+                return commonGlobalAppSingleSettings;
+            });
 
             return services;
         }

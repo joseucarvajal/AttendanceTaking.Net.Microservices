@@ -8,7 +8,9 @@ namespace Academic.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Course> courseConfiguration)
         {
-            courseConfiguration.ToTable("courses", AcademicDbContext.DEFAULT_SCHEMA);
+            //courseConfiguration.ToTable("courses", AcademicDbContext.DEFAULT_SCHEMA);
+            courseConfiguration.ToTable("courses");
+
             courseConfiguration.HasKey(c => c.Id);
 
             courseConfiguration.Property(c => c.Code)
@@ -19,13 +21,13 @@ namespace Academic.Infrastructure.EntityConfigurations
                 .HasMaxLength(100)
                 .IsRequired();
 
-            courseConfiguration.Property<int?>("_courseGroupId")
+            courseConfiguration.Property<int?>("CourseGroupId")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("CourseGroupId")
                 .IsRequired(false);
             courseConfiguration.HasOne(c => c.CourseGroup)
                 .WithMany()
-                .HasForeignKey("_courseGroupId");
+                .HasForeignKey("CourseGroupId");
         }
     }
 }

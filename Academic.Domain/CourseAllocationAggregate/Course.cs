@@ -7,7 +7,7 @@ namespace Academic.Domain.CourseAllocationAggregate
         public string Code { get; set; }
         public string Name { get; set; }
 
-        private int? _courseGroupId;
+        public int? CourseGroupId { get; set; }
         public CourseGroup CourseGroup { get; set; }
 
         public Course() { }
@@ -16,7 +16,7 @@ namespace Academic.Domain.CourseAllocationAggregate
         {
             Code = code;
             Name = name;
-            _courseGroupId = courseGroupId;
+            CourseGroupId = courseGroupId;
         }
     }
 }

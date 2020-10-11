@@ -9,7 +9,7 @@ namespace Academic.Infrastructure
 {
     public class AcademicDbContext : DbContext
     {
-        public const string DEFAULT_SCHEMA = "academic";
+        public const string DEFAULT_SCHEMA = "";
 
         public AcademicDbContext(DbContextOptions<AcademicDbContext> options): base(options)
         {

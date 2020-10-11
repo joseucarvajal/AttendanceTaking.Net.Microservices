@@ -1,6 +1,9 @@
 ﻿using Academic.API.Application.Commands;
+using Academic.API.Application.Queries.CourseAllocationAggregate;
+using Academic.Domain.CourseAllocationAggregate;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Academic.API.Controllers
@@ -13,7 +16,7 @@ namespace Academic.API.Controllers
 
         public CourseAllocationController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
 
@@ -24,6 +27,13 @@ namespace Academic.API.Controllers
         )
         {
             return await _mediator.Send(command);
+        }
+
+        [HttpGet]
+        [Route("course/{id}")]
+        public async Task<Course> GetCourseById([FromRoute] Guid id)
+        {
+            return await _mediator.Send(new GetCourseByIdQueryHandler.Query(id));
         }
     }
 }
