@@ -1,6 +1,7 @@
 using Academic.API.Application.Commands;
 using Academic.Infrastructure;
 using App.Common.DependencyInjection;
+using App.Common.Middlewares;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +48,8 @@ namespace Academic.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

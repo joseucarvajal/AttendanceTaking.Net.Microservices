@@ -12,9 +12,10 @@ namespace Academic.Infrastructure.EntityConfigurations
             courseConfiguration.ToTable("courses");
 
             courseConfiguration.HasKey(c => c.Id);
+            courseConfiguration.HasIndex(c => c.Code).IsUnique();
 
             courseConfiguration.Property(c => c.Code)
-                .HasMaxLength(15)
+                .HasMaxLength(15)                
                 .IsRequired();
 
             courseConfiguration.Property(c => c.Name)

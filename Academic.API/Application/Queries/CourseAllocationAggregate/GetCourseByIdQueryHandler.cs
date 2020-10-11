@@ -43,7 +43,7 @@ namespace Academic.API.Application.Queries.CourseAllocationAggregate
                         FROM courses
                         WHERE Id = @Id";
 
-                    return await conn.QuerySingleAsync<Course>(sql, new { Id = request.Id });                    
+                    return await conn.QuerySingleOrDefaultAsync<Course>(sql, new { Id = request.Id });
                 }
             }
         }

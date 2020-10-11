@@ -1,7 +1,11 @@
 ﻿using Academic.Domain.CourseAllocationAggregate;
 using Academic.Infrastructure;
+using App.Common.Exceptions;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,6 +36,7 @@ namespace Academic.API.Application.Commands
 
         public class Handler : IRequestHandler<Command, bool>
         {
+
             private AcademicDbContext _academicDbContext;
 
             public Handler(AcademicDbContext academicDbContext)
@@ -42,8 +47,19 @@ namespace Academic.API.Application.Commands
             public async Task<bool> Handle(
                 Command request, 
                 CancellationToken cancellationToken
-                )
-            {                
+            )
+            {
+                string code = request.Code;
+                Course existingCourse = await _academicDbContext
+                                                .Courses
+                                                .AsNoTracking()
+                                                .SingleOrDefaultAsync(c => c.Code == code);
+                                                
+                if (existingCourse != null)
+                {
+                    throw new AppException($"El curso con código {code} ya se encuentra registrado");
+                }
+
                 Course course = new Course(request.Code, request.Name, request.CourseGroupId);
                 _academicDbContext.Courses.Add(course);
                 int count = await _academicDbContext.SaveChangesAsync();
