@@ -9,7 +9,7 @@ namespace Academic.Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<Course> courseConfiguration)
         {
             //courseConfiguration.ToTable("courses", AcademicDbContext.DEFAULT_SCHEMA);
-            courseConfiguration.ToTable("courses");
+            courseConfiguration.ToTable("course");
 
             courseConfiguration.HasKey(c => c.Id);
             courseConfiguration.HasIndex(c => c.Code).IsUnique();

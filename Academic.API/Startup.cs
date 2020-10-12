@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
 
 namespace Academic.API
 {
@@ -34,7 +36,9 @@ namespace Academic.API
             services.AddCustomMSSQLDbContext<AcademicDbContext>(Configuration)
                     .AddMediatR(typeof(CreateCourseCommandHandler).Assembly);
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(config => {
+                config.EnableAnnotations();
+            });            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

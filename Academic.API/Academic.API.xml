@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Academic.API</name>
+    </assembly>
+    <members>
+        <member name="M:Academic.API.Controllers.CourseAllocationController.CreateCourse(Academic.API.Application.Commands.CreateCourseCommandHandler.Command)">
+            <summary>
+            Creates a new course
+            </summary>
+            <param name="course"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Academic.API.Controllers.CourseAllocationController.GetCourseById(System.Guid)">
+            <summary>
+            Gets a specific course by a given Id
+            </summary>
+            <param name="id">Course id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Academic.API.Controllers.CourseAllocationController.GetCourseDetails">
+            <summary>
+            Gets all courses list
+            </summary>
+            <returns>List of available courses with details</returns>
+        </member>
+        <member name="M:Academic.API.Controllers.CourseAllocationController.GetCourseDetailsById(System.Guid)">
+            <summary>
+            Gets specific course details
+            </summary>
+            <param name="id">Course id</param>
+            <returns>Course object</returns>
+        </member>
+    </members>
+</doc>

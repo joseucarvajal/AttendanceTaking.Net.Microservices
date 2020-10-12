@@ -40,7 +40,7 @@ namespace Academic.API.Application.Queries.CourseAllocationAggregate
                 {
                     string sql = @"
                         SELECT Id, Code, Name, CourseGroupId
-                        FROM courses
+                        FROM course
                         WHERE Id = @Id";
 
                     return await conn.QuerySingleOrDefaultAsync<Course>(sql, new { Id = request.Id });
