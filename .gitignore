@@ -10,6 +10,8 @@ Academic.Infrastructure/bin
 Academic.Infrastructure/obj
 Academic.API/bin
 Academic.API/obj
+Academic.API.Test/bin
+Academic.API.Test/obj
 
 Identity.Api/bin
 Identity.Api/obj
