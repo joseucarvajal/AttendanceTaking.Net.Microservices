@@ -4,8 +4,6 @@ using App.Common.Exceptions;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,7 +11,7 @@ namespace Academic.API.Application.Commands
 {
     public class CreateCourseCommandHandler
     {
-        public class Command : IRequest<bool>
+        public class Command : IRequest<Course>
         {
             public string Code { get; set; }
             public string Name { get; set; }
@@ -34,7 +32,7 @@ namespace Academic.API.Application.Commands
             }
         }
 
-        public class Handler : IRequestHandler<Command, bool>
+        public class Handler : IRequestHandler<Command, Course>
         {
 
             private AcademicDbContext _academicDbContext;
@@ -44,7 +42,7 @@ namespace Academic.API.Application.Commands
                 _academicDbContext = academicDbContext;
             }
 
-            public async Task<bool> Handle(
+            public async Task<Course> Handle(
                 Command request, 
                 CancellationToken cancellationToken
             )
@@ -64,7 +62,7 @@ namespace Academic.API.Application.Commands
                 _academicDbContext.Courses.Add(course);
                 int count = await _academicDbContext.SaveChangesAsync();
 
-                return count > 0;
+                return course;
             }
         }
     }

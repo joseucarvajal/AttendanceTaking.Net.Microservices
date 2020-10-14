@@ -5,14 +5,16 @@ using Xunit;
 
 namespace Academic.API.Test
 {
-    public class BaseDbIntegrationTest<TStartup>
+    public class BaseIntegrationTest<TStartup>
         : IClassFixture<WebApplicationFactory<TStartup>>
         where TStartup : class
         
     {
         protected readonly WebApplicationFactory<TStartup> Factory;
 
-        public BaseDbIntegrationTest(WebApplicationFactory<TStartup> factory)
+        protected readonly AcademicTestUtils AcademicTestUtils;
+
+        public BaseIntegrationTest(WebApplicationFactory<TStartup> factory)
         {
             var configPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
             Factory = factory.WithWebHostBuilder(builder => {
@@ -20,6 +22,8 @@ namespace Academic.API.Test
                     config.AddJsonFile(configPath);
                 });
             });
+
+            AcademicTestUtils = new AcademicTestUtils();
         }
     }
 }

@@ -22,7 +22,7 @@ services:
 
 #ports: host:container
   mssqlsrv:
-    image: "mcr.microsoft.com/mssql/server"
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
     container_name: attendanceDB
     ports:
       - "1433:1433"

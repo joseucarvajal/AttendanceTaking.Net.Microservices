@@ -27,7 +27,7 @@ namespace Academic.API.Controllers
         [SwaggerOperation(Summary = "Creates a new course")]
         [SwaggerResponse((int)HttpStatusCode.OK, "Course created succesfully")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, "Bad Request")]
-        public async Task<ActionResult<bool>> CreateCourse(
+        public async Task<ActionResult<Course>> CreateCourse(
             [FromBody]CreateCourseCommandHandler.Command course
         )
         {
@@ -58,5 +58,12 @@ namespace Academic.API.Controllers
             return await _mediator.Send(new GetCourseDetailsByIdQueryHandler.Query(id));
         }
 
+        [HttpDelete]
+        [Route("course/{id}")]
+        [SwaggerOperation(Summary = "Deletes a course by a given id")]
+        public async Task<bool> RemoveCourse([FromRoute] Guid id)
+        {
+            return await _mediator.Send(new DeleteCourseCommandHandler.Command(id));
+        }
     }
 }
